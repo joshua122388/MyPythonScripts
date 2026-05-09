@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="760" viewBox="0 0 1060 760" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <clipPath id="c-date">
+      <rect x="405" y="75" width="240" height="192" rx="8"/>
+    </clipPath>
+    <clipPath id="c-fact">
+      <rect x="400" y="320" width="250" height="218" rx="8"/>
+    </clipPath>
+    <clipPath id="c-product">
+      <rect x="765" y="346" width="240" height="166" rx="8"/>
+    </clipPath>
+    <clipPath id="c-customer">
+      <rect x="45" y="359" width="240" height="140" rx="8"/>
+    </clipPath>
+    <clipPath id="c-location">
+      <rect x="405" y="575" width="240" height="140" rx="8"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1060" height="760" fill="#F1F5F9" rx="12"/>
+
+  <!-- Title -->
+  <text x="530" y="44" text-anchor="middle" font-size="20" font-weight="700" fill="#0F172A" letter-spacing="0.3">Sales Data Warehouse — Star Schema</text>
+
+  <!-- ===== RELATIONSHIP LINES (drawn behind tables) ===== -->
+  <!-- dim_date to fact_sales -->
+  <line x1="525" y1="267" x2="525" y2="320" stroke="#94A3B8" stroke-width="2"/>
+  <text x="534" y="279" font-size="11" font-weight="700" fill="#94A3B8">1</text>
+  <text x="534" y="316" font-size="11" font-weight="700" fill="#94A3B8">N</text>
+  <!-- dim_product to fact_sales -->
+  <line x1="650" y1="429" x2="765" y2="429" stroke="#94A3B8" stroke-width="2"/>
+  <text x="657" y="424" font-size="11" font-weight="700" fill="#94A3B8">N</text>
+  <text x="749" y="424" font-size="11" font-weight="700" fill="#94A3B8">1</text>
+  <!-- dim_customer to fact_sales -->
+  <line x1="285" y1="429" x2="400" y2="429" stroke="#94A3B8" stroke-width="2"/>
+  <text x="291" y="424" font-size="11" font-weight="700" fill="#94A3B8">1</text>
+  <text x="384" y="424" font-size="11" font-weight="700" fill="#94A3B8">N</text>
+  <!-- dim_location to fact_sales -->
+  <line x1="525" y1="538" x2="525" y2="575" stroke="#94A3B8" stroke-width="2"/>
+  <text x="534" y="552" font-size="11" font-weight="700" fill="#94A3B8">N</text>
+  <text x="534" y="572" font-size="11" font-weight="700" fill="#94A3B8">1</text>
+
+  <!-- ===== dim_date TABLE ===== -->
+  <rect x="407" y="78" width="240" height="192" rx="8" fill="#0000001C"/>
+  <rect x="405" y="75" width="240" height="192" rx="8" fill="white"/>
+  <g clip-path="url(#c-date)">
+    <rect x="405" y="75" width="240" height="36" fill="#6D28D9"/>
+    <rect x="405" y="111" width="240" height="26" fill="#F5F3FF"/>
+    <rect x="405" y="163" width="240" height="26" fill="#F5F3FF"/>
+    <rect x="405" y="215" width="240" height="26" fill="#F5F3FF"/>
+    <line x1="405" y1="137" x2="645" y2="137" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="405" y1="163" x2="645" y2="163" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="405" y1="189" x2="645" y2="189" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="405" y1="215" x2="645" y2="215" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="405" y1="241" x2="645" y2="241" stroke="#EDE9FE" stroke-width="0.8"/>
+  </g>
+  <rect x="405" y="75" width="240" height="192" rx="8" fill="none" stroke="#DDD6FE" stroke-width="1.5"/>
+  <text x="525" y="99" text-anchor="middle" font-size="13" font-weight="700" fill="white">dim_date</text>
+  <rect x="412" y="120" width="8" height="8" rx="1" fill="#F59E0B"/>
+  <text x="425" y="129" font-size="12" font-weight="600" fill="#1E293B">date_id</text>
+  <text x="638" y="129" text-anchor="end" font-size="10" fill="#64748B">SERIAL</text>
+  <text x="425" y="155" font-size="12" fill="#374151">full_date</text>
+  <text x="638" y="155" text-anchor="end" font-size="10" fill="#64748B">DATE</text>
+  <text x="425" y="181" font-size="12" fill="#374151">year</text>
+  <text x="638" y="181" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <text x="425" y="207" font-size="12" fill="#374151">quarter</text>
+  <text x="638" y="207" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <text x="425" y="233" font-size="12" fill="#374151">month</text>
+  <text x="638" y="233" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <text x="425" y="259" font-size="12" fill="#374151">month_name</text>
+  <text x="638" y="259" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+
+  <!-- ===== fact_sales TABLE ===== -->
+  <rect x="402" y="323" width="250" height="218" rx="8" fill="#0000001C"/>
+  <rect x="400" y="320" width="250" height="218" rx="8" fill="white"/>
+  <g clip-path="url(#c-fact)">
+    <rect x="400" y="320" width="250" height="36" fill="#1D4ED8"/>
+    <rect x="400" y="356" width="250" height="26" fill="#EFF6FF"/>
+    <rect x="400" y="408" width="250" height="26" fill="#EFF6FF"/>
+    <rect x="400" y="460" width="250" height="26" fill="#EFF6FF"/>
+    <rect x="400" y="512" width="250" height="26" fill="#EFF6FF"/>
+    <line x1="400" y1="382" x2="650" y2="382" stroke="#DBEAFE" stroke-width="0.8"/>
+    <line x1="400" y1="408" x2="650" y2="408" stroke="#DBEAFE" stroke-width="0.8"/>
+    <line x1="400" y1="434" x2="650" y2="434" stroke="#DBEAFE" stroke-width="0.8"/>
+    <line x1="400" y1="460" x2="650" y2="460" stroke="#DBEAFE" stroke-width="0.8"/>
+    <line x1="400" y1="486" x2="650" y2="486" stroke="#DBEAFE" stroke-width="0.8"/>
+    <line x1="400" y1="512" x2="650" y2="512" stroke="#DBEAFE" stroke-width="0.8"/>
+  </g>
+  <rect x="400" y="320" width="250" height="218" rx="8" fill="none" stroke="#93C5FD" stroke-width="2"/>
+  <text x="525" y="344" text-anchor="middle" font-size="13" font-weight="700" fill="white">fact_sales</text>
+  <rect x="407" y="365" width="8" height="8" rx="1" fill="#F59E0B"/>
+  <text x="420" y="374" font-size="12" font-weight="600" fill="#1E293B">sale_id</text>
+  <text x="643" y="374" text-anchor="end" font-size="10" fill="#64748B">SERIAL</text>
+  <rect x="407" y="391" width="8" height="8" rx="1" fill="#60A5FA"/>
+  <text x="420" y="400" font-size="12" fill="#374151">date_id</text>
+  <text x="643" y="400" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <rect x="407" y="417" width="8" height="8" rx="1" fill="#60A5FA"/>
+  <text x="420" y="426" font-size="12" fill="#374151">product_id</text>
+  <text x="643" y="426" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <rect x="407" y="443" width="8" height="8" rx="1" fill="#60A5FA"/>
+  <text x="420" y="452" font-size="12" fill="#374151">customer_id</text>
+  <text x="643" y="452" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <rect x="407" y="469" width="8" height="8" rx="1" fill="#60A5FA"/>
+  <text x="420" y="478" font-size="12" fill="#374151">location_id</text>
+  <text x="643" y="478" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+  <text x="420" y="504" font-size="12" fill="#374151">revenue</text>
+  <text x="643" y="504" text-anchor="end" font-size="10" fill="#64748B">DECIMAL</text>
+  <text x="420" y="530" font-size="12" fill="#374151">quantity</text>
+  <text x="643" y="530" text-anchor="end" font-size="10" fill="#64748B">INT</text>
+
+  <!-- ===== dim_product TABLE ===== -->
+  <rect x="767" y="349" width="240" height="166" rx="8" fill="#0000001C"/>
+  <rect x="765" y="346" width="240" height="166" rx="8" fill="white"/>
+  <g clip-path="url(#c-product)">
+    <rect x="765" y="346" width="240" height="36" fill="#6D28D9"/>
+    <rect x="765" y="382" width="240" height="26" fill="#F5F3FF"/>
+    <rect x="765" y="434" width="240" height="26" fill="#F5F3FF"/>
+    <rect x="765" y="486" width="240" height="26" fill="#F5F3FF"/>
+    <line x1="765" y1="408" x2="1005" y2="408" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="765" y1="434" x2="1005" y2="434" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="765" y1="460" x2="1005" y2="460" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="765" y1="486" x2="1005" y2="486" stroke="#EDE9FE" stroke-width="0.8"/>
+  </g>
+  <rect x="765" y="346" width="240" height="166" rx="8" fill="none" stroke="#DDD6FE" stroke-width="1.5"/>
+  <text x="885" y="370" text-anchor="middle" font-size="13" font-weight="700" fill="white">dim_product</text>
+  <rect x="772" y="391" width="8" height="8" rx="1" fill="#F59E0B"/>
+  <text x="785" y="400" font-size="12" font-weight="600" fill="#1E293B">product_id</text>
+  <text x="998" y="400" text-anchor="end" font-size="10" fill="#64748B">SERIAL</text>
+  <text x="785" y="426" font-size="12" fill="#374151">product_name</text>
+  <text x="998" y="426" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="785" y="452" font-size="12" fill="#374151">category</text>
+  <text x="998" y="452" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="785" y="478" font-size="12" fill="#374151">sub_category</text>
+  <text x="998" y="478" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="785" y="504" font-size="12" fill="#374151">unit_price</text>
+  <text x="998" y="504" text-anchor="end" font-size="10" fill="#64748B">DECIMAL</text>
+
+  <!-- ===== dim_customer TABLE ===== -->
+  <rect x="47" y="362" width="240" height="140" rx="8" fill="#0000001C"/>
+  <rect x="45" y="359" width="240" height="140" rx="8" fill="white"/>
+  <g clip-path="url(#c-customer)">
+    <rect x="45" y="359" width="240" height="36" fill="#6D28D9"/>
+    <rect x="45" y="395" width="240" height="26" fill="#F5F3FF"/>
+    <rect x="45" y="447" width="240" height="26" fill="#F5F3FF"/>
+    <line x1="45" y1="421" x2="285" y2="421" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="45" y1="447" x2="285" y2="447" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="45" y1="473" x2="285" y2="473" stroke="#EDE9FE" stroke-width="0.8"/>
+  </g>
+  <rect x="45" y="359" width="240" height="140" rx="8" fill="none" stroke="#DDD6FE" stroke-width="1.5"/>
+  <text x="165" y="383" text-anchor="middle" font-size="13" font-weight="700" fill="white">dim_customer</text>
+  <rect x="52" y="404" width="8" height="8" rx="1" fill="#F59E0B"/>
+  <text x="65" y="413" font-size="12" font-weight="600" fill="#1E293B">customer_id</text>
+  <text x="278" y="413" text-anchor="end" font-size="10" fill="#64748B">SERIAL</text>
+  <text x="65" y="439" font-size="12" fill="#374151">full_name</text>
+  <text x="278" y="439" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="65" y="465" font-size="12" fill="#374151">segment</text>
+  <text x="278" y="465" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="65" y="491" font-size="12" fill="#374151">email</text>
+  <text x="278" y="491" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+
+  <!-- ===== dim_location TABLE ===== -->
+  <rect x="407" y="578" width="240" height="140" rx="8" fill="#0000001C"/>
+  <rect x="405" y="575" width="240" height="140" rx="8" fill="white"/>
+  <g clip-path="url(#c-location)">
+    <rect x="405" y="575" width="240" height="36" fill="#6D28D9"/>
+    <rect x="405" y="611" width="240" height="26" fill="#F5F3FF"/>
+    <rect x="405" y="663" width="240" height="26" fill="#F5F3FF"/>
+    <line x1="405" y1="637" x2="645" y2="637" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="405" y1="663" x2="645" y2="663" stroke="#EDE9FE" stroke-width="0.8"/>
+    <line x1="405" y1="689" x2="645" y2="689" stroke="#EDE9FE" stroke-width="0.8"/>
+  </g>
+  <rect x="405" y="575" width="240" height="140" rx="8" fill="none" stroke="#DDD6FE" stroke-width="1.5"/>
+  <text x="525" y="599" text-anchor="middle" font-size="13" font-weight="700" fill="white">dim_location</text>
+  <rect x="412" y="620" width="8" height="8" rx="1" fill="#F59E0B"/>
+  <text x="425" y="629" font-size="12" font-weight="600" fill="#1E293B">location_id</text>
+  <text x="638" y="629" text-anchor="end" font-size="10" fill="#64748B">SERIAL</text>
+  <text x="425" y="655" font-size="12" fill="#374151">city</text>
+  <text x="638" y="655" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="425" y="681" font-size="12" fill="#374151">country</text>
+  <text x="638" y="681" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+  <text x="425" y="707" font-size="12" fill="#374151">region</text>
+  <text x="638" y="707" text-anchor="end" font-size="10" fill="#64748B">VARCHAR</text>
+
+  <!-- ===== LEGEND ===== -->
+  <rect x="300" y="727" width="460" height="24" rx="6" fill="#E2E8F0"/>
+  <rect x="315" y="734" width="8" height="8" rx="1" fill="#F59E0B"/>
+  <text x="328" y="745" font-size="11" fill="#475569">PK = Primary Key</text>
+  <rect x="455" y="734" width="8" height="8" rx="1" fill="#60A5FA"/>
+  <text x="468" y="745" font-size="11" fill="#475569">FK = Foreign Key</text>
+  <rect x="600" y="734" width="8" height="8" rx="1" fill="#94A3B8"/>
+  <text x="613" y="745" font-size="11" fill="#475569">N:1 = many-to-one relationship</text>
+</svg>
