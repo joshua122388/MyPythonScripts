@@ -3,6 +3,7 @@ Script that monitors server uptime and prompts an administrator for approval
 before rebooting if uptime exceeds a configurable threshold. All events are
 logged to both a file and the terminal throughout the process.
 """
+#!/usr/bin/env python3
 
 import subprocess
 import logging
